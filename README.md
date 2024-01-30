@@ -2,9 +2,9 @@
 
 ### About me:
 
-  Full-stack developer, student of Systems Analysis and Development at Universidade Estácio de Sá. Certificate in Agile culture and User Experience by FIAP, in People Management by SEBRAE. 
-  
-  I'm a fan of technology and geek culture. I have good communication, good interpersonal relationships, responsibility and  leadership spirit. I have a passion for acquiring and sharing knowledge and I seek new experiences in the area of information technology.
+• Full-stack developer, student of Systems Analysis and Development at Universidade Estácio de Sá. Certificate in Agile culture and User Experience by FIAP, in People Management by SEBRAE. 
+
+• I'm a fan of technology and geek culture. I have good communication, good interpersonal relationships, responsibility and  leadership spirit. I have a passion for acquiring and sharing knowledge and I seek new experiences in the area of information technology.
 
 ### Languages:
 
