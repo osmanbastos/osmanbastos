@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Osman Bastos e Silva Cruz | Engenheiro de Software</title>
+    <title>Osman Bastos | Engenheiro de Software</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -385,6 +385,267 @@
         font-size: 0.9rem;
       }
 
+      /* ── Dashboard Preview Section ─────────────────────────────── */
+      .dashboard-carousel-wrap {
+        position: relative;
+        margin-top: 36px;
+      }
+
+      /* Fade edges to hint at more content */
+      .dashboard-carousel-wrap::before,
+      .dashboard-carousel-wrap::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 60px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .dashboard-carousel-wrap::before {
+        left: 0;
+        background: linear-gradient(to right, var(--bg-alt), transparent);
+      }
+      .dashboard-carousel-wrap::after {
+        right: 0;
+        background: linear-gradient(to left, var(--bg-alt), transparent);
+      }
+
+      .dashboard-grid {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        padding: 12px 4px 20px;
+        /* Hide scrollbar visually but keep functionality */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(49, 255, 232, 0.25) transparent;
+      }
+
+      .dashboard-grid::-webkit-scrollbar {
+        height: 5px;
+      }
+      .dashboard-grid::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .dashboard-grid::-webkit-scrollbar-thumb {
+        background: rgba(49, 255, 232, 0.25);
+        border-radius: 999px;
+      }
+
+      .dashboard-thumb {
+        position: relative;
+        /* Responsive card width: ~75vw on mobile, ~40vw on tablet, fixed 340px on desktop */
+        flex: 0 0 clamp(260px, 38vw, 360px);
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(49, 255, 232, 0.12);
+        background: var(--bg-card-light);
+        cursor: pointer;
+        scroll-snap-align: start;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        box-shadow: 0 8px 32px rgba(3, 5, 27, 0.5);
+      }
+
+      .dashboard-thumb:hover {
+        transform: translateY(-6px) scale(1.015);
+        box-shadow: 0 20px 50px rgba(49, 255, 232, 0.12), 0 8px 32px rgba(3, 5, 27, 0.6);
+        border-color: rgba(49, 255, 232, 0.35);
+      }
+
+      .dashboard-thumb img {
+        width: 100%;
+        /* Height is proportional: 16:9 ratio via aspect-ratio */
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+
+      .dashboard-thumb:hover img {
+        transform: scale(1.04);
+      }
+
+      .dashboard-thumb-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(5, 7, 9, 0.88) 0%, transparent 55%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+        opacity: 1;
+        transition: opacity 0.25s ease;
+      }
+
+      .dashboard-thumb-label {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+        margin: 0 0 4px;
+      }
+
+      .dashboard-thumb-sub {
+        font-size: 0.82rem;
+        color: var(--accent);
+        margin: 0;
+        letter-spacing: 0.03em;
+      }
+
+      .dashboard-thumb-icon {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(49, 255, 232, 0.15);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(49, 255, 232, 0.25);
+        display: grid;
+        place-items: center;
+        color: var(--accent);
+        font-size: 0.9rem;
+        transition: background 0.2s ease;
+      }
+
+      .dashboard-thumb:hover .dashboard-thumb-icon {
+        background: rgba(49, 255, 232, 0.28);
+      }
+
+      /* Carousel navigation arrows */
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(12, 18, 28, 0.85);
+        border: 1px solid rgba(49, 255, 232, 0.3);
+        color: var(--accent);
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        transition: background 0.2s ease, border-color 0.2s ease;
+        line-height: 1;
+      }
+      .carousel-btn:hover {
+        background: rgba(49, 255, 232, 0.18);
+        border-color: rgba(49, 255, 232, 0.6);
+      }
+      .carousel-btn-prev { left: -6px; }
+      .carousel-btn-next { right: -6px; }
+
+      @media (max-width: 500px) {
+        .dashboard-thumb {
+          flex: 0 0 80vw;
+        }
+      }
+
+      /* ── Lightbox ───────────────────────────────────────────────── */
+      .lb-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(3, 5, 15, 0.92);
+        backdrop-filter: blur(10px);
+        z-index: 9000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .lb-backdrop.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .lb-content {
+        position: relative;
+        max-width: 92vw;
+        max-height: 88vh;
+      }
+
+      .lb-content img {
+        display: block;
+        max-width: 100%;
+        max-height: 85vh;
+        border-radius: 16px;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(49,255,232,0.15);
+        transform: scale(0.92);
+        transition: transform 0.35s cubic-bezier(.22,.68,0,1.2);
+      }
+
+      .lb-backdrop.active .lb-content img {
+        transform: scale(1);
+      }
+
+      .lb-caption {
+        text-align: center;
+        margin-top: 14px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+
+      .lb-close {
+        position: absolute;
+        top: -35px;
+        right: -35px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.15);
+        color: var(--text);
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        transition: background 0.2s ease;
+        line-height: 1;
+      }
+
+      .lb-close:hover {
+        background: rgba(49, 255, 232, 0.18);
+        color: var(--accent);
+      }
+
+      .lb-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: var(--text);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        font-size: 1rem;
+        transition: background 0.2s ease, color 0.2s ease;
+        z-index: 1;
+      }
+
+      .lb-nav:hover {
+        background: rgba(49, 255, 232, 0.18);
+        color: var(--accent);
+      }
+
+      .lb-prev { right: calc(100% + 14px); }
+      .lb-next { left: calc(100% + 14px); }
+
       @media (max-width: 768px) {
         header {
           flex-direction: column;
@@ -403,6 +664,9 @@
           flex-direction: column;
           align-items: flex-start;
         }
+
+        .lb-prev { right: auto; left: 0; top: auto; bottom: -56px; transform: none; }
+        .lb-next { left: auto; right: 0; top: auto; bottom: -56px; transform: none; }
       }
     </style>
   </head>
@@ -416,17 +680,17 @@
       <section class="hero" id="hero">
         <div class="hero-content">
           <div class="badge">Disponível para CLT ou PJ</div>
-          <h1>Engenheiro de Software | Arquitetura Escalável | Automação Inteligente</h1>
+          <h1>Engenheiro de Software focado em Escalabilidade, Automação e Eficiência</h1>
           <p class="subheadline">
-            Especialista em desenvolvimento backend com Python e Node.js, arquitetura limpa, mensageria e automações que
-            reduzem custos e aumentam eficiência operacional.
+            Eu construo sistemas que substituem processos manuais, reduzem dependência operacional e escalam com segurança.
           </p>
+          <p><strong>✔ FullStack | ✔ Arquitetura | ✔ Automação | ✔ DevOps</strong></p>
           <p class="author-note">
-            <span>Experiência prática</span> em sistemas críticos, infraestrutura cloud e cultura DevOps.
+            <span>Experiência prática em sistemas críticos (jurídico e saúde), infraestrutura cloud e arquitetura orientada a performance.</span>
           </p>
           <div class="cta-group">
             <a href="#projetos" class="cta primary">Ver Projetos</a>
-            <a href="#contato" class="cta ghost">Fale Comigo</a>
+            <a href="#contato" class="cta ghost">Agendar conversa</a>
             <a href="https://www.linkedin.com/in/osmanbastos" class="cta ghost" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://github.com/osmanbastos" class="cta ghost" target="_blank" rel="noopener">GitHub</a>
           </div>
@@ -436,9 +700,7 @@
       <section id="sobre">
         <h2 class="section-title">Sobre mim</h2>
         <p>
-          Profissional que transforma processos manuais e dependência de fornecedores em sistemas automatizados, escaláveis e
-          sustentáveis. Integro engenharia de software, arquitetura e infraestrutura para entregar soluções resilientes, com foco
-          em confiabilidade, rastreabilidade e impacto direto no negócio.
+          Profissional que transforma processos manuais e dependência de fornecedores em sistemas automatizados, escaláveis e sustentáveis. Integro engenharia de software, arquitetura e infraestrutura para entregar soluções resilientes, com foco em confiabilidade, rastreabilidade e impacto direto no negócio.
         </p>
         <div class="about-grid">
           <div class="about-card">
@@ -446,7 +708,7 @@
             <p>Enxergo o ecossistema completo, do domínio ao monitoramento, tomando decisões técnicas alinhadas aos objetivos corporativos.</p>
           </div>
           <div class="about-card">
-            <h4>Dev + Infra</h4>
+            <h4>Mentalidade DevOps</h4>
             <p>Integração fluida entre desenvolvimento e infraestrutura, aplicando padrões de observabilidade, segurança e performance.</p>
           </div>
           <div class="about-card">
@@ -479,7 +741,7 @@
       </section>
 
       <section id="stack">
-        <h2 class="section-title">Stack técnica</h2>
+        <h2 class="section-title">Tecnologias e Arquitetura</h2>
         <div class="stack-grid">
           <div class="stack-card">
             <h4>Backend</h4>
@@ -526,35 +788,116 @@
       </section>
 
       <section id="projetos">
-        <h2 class="section-title">Projetos de impacto</h2>
+        <h2 class="section-title">Casos Reais</h2>
         <p>
-          Iniciativas com foco em redução de custos operacionais, governança de dados e escalabilidade. Cada entrega conecta
-          arquitetura sólida, automação e métricas de resultado.
+          Iniciativas com foco em redução de custos operacionais, governança de dados e escalabilidade. Cada entrega conecta arquitetura sólida, documentação e métricas de resultado.
         </p>
         <div class="stack-grid">
           <div class="stack-card">
-            <h4>Centralizador de Automações Jurídicas</h4>
+            <h4>Orquestrador de Automações Jurídicas</h4>
             <p>
-              Hub proprietário que integra RPA, n8n e APIs externas para escritórios, dando visibilidade em tempo real a
-              prazos, documentos e billing. Redução de 42% no tempo médio de processos repetitivos.
+              Sistema responsável por processar milhares de execuções diárias com controle de sucesso, erro e rastreabilidade completa. Hub proprietário que integra RPA, n8n, agents e APIs externas para escritórios, dando visibilidade em tempo real a prazos, documentos e eficiência. 
             </p>
+              <ul>
+                <li>Redução de 42% no tempo médio de processos repetitivos</li>
+                <li>+10.000 processos automatizados/dia</li>
+                <li>Dashboard completo das execuções</li>
+              </ul>
           </div>
           <div class="stack-card">
             <h4>Plataforma de Health Ops</h4>
             <p>
-              Conjunto de serviços backend para monitorar uso do prontuário eletrônico, detectar gargalos e disparar rotinas de
-              contingência, garantindo disponibilidade em plantões críticos.
+              Conjunto de serviços para monitorar uso do prontuário eletrônico, detectar gargalos e disparar rotinas de contingência, garantindo disponibilidade em sistemas críticos de saúde.
             </p>
+              <ul>
+                <li>Prontuário Eletrônico</li>
+                <li>Estoque e Logística</li>
+                <li>Monitoramento da rede, através do gerenciamento de VPN, rotas e enlaces</li>
+                <li>Treinamento de equipe multidisciplinar</li>
+              </ul>
           </div>
           <div class="stack-card">
-            <h4>Pipeline de Observabilidade</h4>
+            <h4>Sistemas educacionais</h4>
             <p>
-              Implementação de logs estruturados, alertas e dashboards de confiabilidade com métricas SLO/SLA conectadas a
-              decisões de roadmap.
+              Construção de plataformas de interação entre alunos e professores, com foco em gestão de notas, frequência e conteúdo didático.
             </p>
+              <ul>
+                <li>Gestão de notas</li>
+                <li>Gestão de frequência</li>
+                <li>Gestão de conteúdo didático</li>
+                <li>Gestão de turmas</li>
+                <li>Gestão de alunos</li>
+              </ul>
           </div>
         </div>
       </section>
+
+      <!-- ══ Dashboard Preview ══════════════════════════════════════════ -->
+      <section id="dashboard-preview">
+        <h2 class="section-title">Dashboard em Ação</h2>
+        <p>
+          Visão real das interfaces desenvolvidas: painéis que transformam dados operacionais complexos em informações acionáveis, com rastreabilidade total das execuções.
+        </p>
+
+        <div class="dashboard-carousel-wrap">
+          <!-- Navigation arrows -->
+          <button class="carousel-btn carousel-btn-prev" id="carousel-prev" aria-label="Anterior">‹</button>
+          <button class="carousel-btn carousel-btn-next" id="carousel-next" aria-label="Próximo">›</button>
+
+          <div class="dashboard-grid" id="dashboard-carousel">
+            <!-- Card 1 -->
+            <div class="dashboard-thumb" onclick="openLb(0)" id="thumb-0" role="button" aria-label="Abrir visualização: Dashboard de Execuções">
+              <img src="assets/images/Dashboard.png" alt="Dashboard principal de execuções jurídicas" loading="lazy" />
+              <div class="dashboard-thumb-overlay">
+                <p class="dashboard-thumb-label">Dashboard de Execuções</p>
+                <p class="dashboard-thumb-sub">Orquestrador de Automações Jurídicas</p>
+              </div>
+              <div class="dashboard-thumb-icon" aria-hidden="true">⤢</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="dashboard-thumb" onclick="openLb(1)" id="thumb-1" role="button" aria-label="Abrir visualização: Monitoramento RabbitMQ">
+              <img src="assets/images/RabbitMQ.png" alt="Painel de monitoramento RabbitMQ" loading="lazy" />
+              <div class="dashboard-thumb-overlay">
+                <p class="dashboard-thumb-label">Monitoramento RabbitMQ</p>
+                <p class="dashboard-thumb-sub">Filas e mensageria em tempo real</p>
+              </div>
+              <div class="dashboard-thumb-icon" aria-hidden="true">⤢</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="dashboard-thumb" onclick="openLb(2)" id="thumb-2" role="button" aria-label="Abrir visualização: Gestão de Usuários">
+              <img src="assets/images/usuarios.png" alt="Tela de gestão de usuários do sistema" loading="lazy" />
+              <div class="dashboard-thumb-overlay">
+                <p class="dashboard-thumb-label">Gestão de Usuários</p>
+                <p class="dashboard-thumb-sub">Controle de acesso e permissões</p>
+              </div>
+              <div class="dashboard-thumb-icon" aria-hidden="true">⤢</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="dashboard-thumb" onclick="openLb(3)" id="thumb-3" role="button" aria-label="Abrir visualização: Timeline de Execuções">
+              <img src="assets/images/inicial.png" alt="Timeline de execuções do sistema" loading="lazy" />
+              <div class="dashboard-thumb-overlay">
+                <p class="dashboard-thumb-label">Timeline de Execuções</p>
+                <p class="dashboard-thumb-sub">Visualização de execuções</p>
+              </div>
+              <div class="dashboard-thumb-icon" aria-hidden="true">⤢</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Lightbox ═══════════════════════════════════════════════════ -->
+      <div class="lb-backdrop" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagens">
+        <div class="lb-content">
+          <button class="lb-nav lb-prev" onclick="lbNav(-1)" aria-label="Anterior">‹</button>
+          <button class="lb-nav lb-next" onclick="lbNav(1)" aria-label="Próxima">›</button>
+          <img id="lb-img" src="" alt="" />
+          <p class="lb-caption" id="lb-caption"></p>
+          <button class="lb-close" onclick="closeLb()" aria-label="Fechar">✕</button>
+        </div>
+      </div>
 
       <section id="experiencia">
         <h2 class="section-title">Evolução profissional</h2>
@@ -563,17 +906,16 @@
             <div class="exp-meta">2025 – Atual</div>
             <h4>Analista de Sistemas · HOSPLOG Soluções em Saúde</h4>
             <p>
-              Implementação de sistema de Prontuário Eletrônico (EHR) em hospitais públicos e unidades da Secretaria de Estado da Saúde de Sergipe, garantindo integridade de dados e interoperabilidade.
-              Levantamento de requisitos e suporte junto ao cliente. Ajuste do workflow de integração entre sistemas.
-              Monitoramento da rede, através do gerenciamento de VPN, rotas e enlaces.
-              Treinamento de equipe multidisciplinar.
+              Implementação de sistema de Prontuário Eletrônico (EHR) em hospitais públicos e unidades da Secretaria de Estado da Saúde de Sergipe, garantindo integridade de dados e interoperabilidade. 
+              <br> Levantamento de requisitos e suporte junto ao cliente. Ajuste do workflow de integração entre sistemas.
+              <br> Monitoramento da rede, através do gerenciamento de VPN, rotas e enlaces. <br> Treinamento de equipe multidisciplinar.
             </p>
             <div class="exp-tags">
-              <span>Sistemas de Saúde</span>
-              <span>Prontuário Eletrônico</span>
+              <span>Sistemas críticos de Saúde</span>
+              <span>Levantamento de requisitos</span>
               <span>Infraestrutura</span>
-              <span>Suporte ao Cliente</span>
-              <span>Treinamento</span>
+              <span>Logs XML</span>
+              <span>Gestão de Dados</span>
             </div>
           </div>
         <div class="experience">
@@ -581,15 +923,16 @@
             <div class="exp-meta">2024 – 2026</div>
             <h4>Desenvolvedor Backend · Monteiro Nascimento Advogados</h4>
             <p>
-              Desenvolvimento de um sistema centralizado de automação jurídica para alto volume de dados utilizando Python e Arquitetura Hexagonal, com foco em alta escalabilidade e desacoplamento.
-              Orquestrações de fluxos de trabalho complexos com n8n, RPA e Web Scraping para automatizar milhares de processos jurídicos. Implementação de comunicação assíncrona usando RabbitMQ para mensagens confiáveis ​​e processamento de tarefas.
-              Integração com sistemas como Legal One, Elaw e GCPJ entre outros. Estabelecimento de uma cultura de CI/CD e pipelines de testes e monitoramento contínuo.
-              Construção de Dashboards para visualização de dados e métricas de desempenho.
+              Desenvolvimento de um sistema de automações jurídicas para alto volume de dados utilizando Python e Arquitetura Hexagonal, com foco em alta escalabilidade e desacoplamento.
+              <br>Orquestrações de fluxos de trabalho complexos com n8n, RPA e Web Scraping para automatizar milhares de processos jurídicos. Implementação de comunicação assíncrona usando RabbitMQ para mensagens confiáveis ​​e processamento de tarefas.
+              <br>Integração com sistemas como Legal One, Elaw e GCPJ entre outros. Estabelecimento de uma cultura de CI/CD e pipelines de testes e monitoramento contínuo.
+              <br>Construção de Dashboards para visualização de dados e métricas de desempenho.
             </p>
             <div class="exp-tags">
               <span>Arquitetura Hexagonal</span>
               <span>Mensageria</span>
               <span>Automação Jurídica</span>
+              <span>Treinamento de Agents</span>
               <span>Business Intelligence</span>
               <span>Testes e Qualidade</span>
             </div>
@@ -599,9 +942,10 @@
             <div class="exp-meta">2014 – 2024</div>
             <h4>Supervisor de Tecnologia · Supmed</h4>
             <p>
-              Gerenciar projetos de desenvolvimento, instalação e manutenção de sistemas embarcados. Atuei diretamente no levantamento de requisitos técnicos junto aos clientes. Realizei treinamento de usuários.
-              Implementei sistema de qualidade e auditoria interna, aumentando a eficiência dos serviços.
-              Construí a base de conhecimento compartilhado com procedimentos padronizados e o programa interno de nivelamento, realizando treinamentos e multiplicando conhecimento entre os membros de diversos setores.
+              Gerenciar projetos, instalação e manutenção de sistemas. Atuei diretamente no levantamento de requisitos técnicos junto aos clientes. Realizei treinamento de usuários.
+              <br>Implementei sistema de qualidade e auditoria interna, aumentando a eficiência dos serviços.
+              <br>Construí a base de conhecimento compartilhado com procedimentos padronizados e o programa interno de nivelamento, realizando treinamentos e multiplicando conhecimento entre os membros de diversos setores.
+              <br>Reprogramação de EPROMs e softwares embarcados em equipamentos médicos.
             </p>
             <div class="exp-tags">
               <span>Gestão de Projetos</span>
@@ -615,14 +959,16 @@
             <div class="exp-meta">2011 – 2014</div>
             <h4>Analista de Desenvolvimento de Sistemas · Avansys/Netra</h4>
             <p>
-              Desenvolvimento de sistemas customizados para atender as demandas da SEC/BA. Gerenciamento da infraestrutura de rede (VLAN, MAN e WAN) de dados (lógica e física) de videoconferência, de servidores Linux e Windows, máquinas virtuais (VM), configuração de switches gerenciáveis e computadores em 30 cidades pólo, auxiliar a coordenação no suporte e orientação aos operadores remotos.
-              Criar e alimentar relatórios periódicos dos serviços e equipamentos. Controle de qualidade das transmissões, rotas e conexões, inclusive com instituições fora da rede SEC/BA.
-              Documentação periódicas dos serviços e equipamentos. Minhas contribuições foram fundamentais para a implementação de soluções tecnológicas inovadoras, proporcionando melhorias significativas na gestão educacional.
-              Atuei diretamente nas instalações do cliente, estabelecendo um relacionamento sólido e de confiança. Minha abordagem proativa para entender as necessidades específicas do cliente permitiu uma colaboração eficaz, resultando em soluções personalizadas e alinhadas com as expectativas.
+              Desenvolvimento de sistemas Moodle e outras plataformas educacionais customizadas para atender as demandas da SEC/BA. Gerenciamento da infraestrutura de rede (VLAN, MAN e WAN) de dados (lógica e física) de videoconferência, de servidores Linux e Windows, máquinas virtuais (VM), configuração de switches gerenciáveis e computadores em 30 cidades pólo, auxiliar a coordenação no suporte e orientação aos operadores remotos.
+              <br>Criar e alimentar relatórios periódicos dos serviços e equipamentos. Controle de qualidade das transmissões, rotas e conexões, inclusive com instituições fora da rede SEC/BA.
+              <br>Documentação periódicas das atividades desenvolvidas. Minhas contribuições foram fundamentais para a implementação de soluções tecnológicas inovadoras, proporcionando melhorias significativas na gestão educacional.
+              <br>Atuei diretamente nas instalações do cliente, estabelecendo um relacionamento sólido e de confiança. Minha abordagem proativa para entender as necessidades específicas do cliente permitiu uma colaboração eficaz, resultando em soluções personalizadas e alinhadas com as expectativas.
             </p>
             <div class="exp-tags">
-              <span>Videoconferência</span>
+              <span>Gestão de Projetos</span>
+              <span>Desenvolvimento de Sistemas</span>
               <span>Infraestrutura</span>
+              <span>Videoconferência</span>
               <span>Suporte ao Cliente</span>
             </div>
           </div>
@@ -705,7 +1051,7 @@
       </section>
 
       <section id="contato" class="final-cta">
-        <h2 class="section-title">Vamos construir sistemas mais inteligentes, eficientes e escaláveis?</h2>
+        <h2 class="section-title">Buscando um engenheiro para escalar seus sistemas ou automatizar processos?</h2>
         <p>Disponível para liderar iniciativas estratégicas em empresas que valorizam arquitetura sólida e automação inteligente.</p>
         <a href="mailto:osmanbastos@hotmail.com" class="cta primary">Entre em Contato</a>
         <div class="contact-info">
@@ -721,6 +1067,67 @@
     </main>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // ── Lightbox Logic ───────────────────────────────────────────────
+      const lbImages = [
+        { src: "assets/images/Dashboard.png",  caption: "Dashboard de Execuções — Orquestrador de Automações Jurídicas" },
+        { src: "assets/images/RabbitMQ.png",   caption: "Monitoramento RabbitMQ — Filas e mensageria em tempo real" },
+        { src: "assets/images/usuarios.png",   caption: "Gestão de Usuários — Controle de acesso e permissões" },
+        { src: "assets/images/inicial.png",   caption: "Interface Timeline do Sistema" },
+      ];
+      let lbIndex = 0;
+
+      function openLb(index) {
+        lbIndex = index;
+        const lb = document.getElementById("lightbox");
+        document.getElementById("lb-img").src = lbImages[lbIndex].src;
+        document.getElementById("lb-img").alt = lbImages[lbIndex].caption;
+        document.getElementById("lb-caption").textContent = lbImages[lbIndex].caption;
+        lb.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLb() {
+        document.getElementById("lightbox").classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      function lbNav(dir) {
+        lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+        document.getElementById("lb-img").src = lbImages[lbIndex].src;
+        document.getElementById("lb-img").alt = lbImages[lbIndex].caption;
+        document.getElementById("lb-caption").textContent = lbImages[lbIndex].caption;
+      }
+
+      // Close on backdrop click
+      document.getElementById("lightbox").addEventListener("click", function(e) {
+        if (e.target === this) closeLb();
+      });
+
+      // Close on Escape key
+      document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") closeLb();
+        if (e.key === "ArrowLeft")  lbNav(-1);
+        if (e.key === "ArrowRight") lbNav(1);
+      });
+
+      // ── Carousel Navigation ───────────────────────────────────────────
+      (function () {
+        const carousel = document.getElementById("dashboard-carousel");
+        const btnPrev  = document.getElementById("carousel-prev");
+        const btnNext  = document.getElementById("carousel-next");
+
+        function scrollByCard(dir) {
+          // Get the first card's width + the gap between cards (20px)
+          const card = carousel.querySelector(".dashboard-thumb");
+          const gap  = parseInt(getComputedStyle(carousel).gap) || 20;
+          const step = (card ? card.offsetWidth : 320) + gap;
+          carousel.scrollBy({ left: dir * step, behavior: "smooth" });
+        }
+
+        btnPrev.addEventListener("click", () => scrollByCard(-1));
+        btnNext.addEventListener("click", () => scrollByCard(1));
+      })();
     </script>
   </body>
 </html>
