@@ -847,6 +847,16 @@
           <div class="dashboard-grid" id="dashboard-carousel">
             <!-- Card 1 -->
             <div class="dashboard-thumb" onclick="openLb(0)" id="thumb-0" role="button" aria-label="Abrir visualização: Dashboard de Execuções">
+              <img src="assets/images/advogado.png" alt="Landing Page - Advogado" loading="lazy" />
+              <div class="dashboard-thumb-overlay">
+                <p class="dashboard-thumb-label"><a href="https://lawyer-landing-eta.vercel.app/" target="_blank">Click aqui para acessar!</a></p>
+                <p class="dashboard-thumb-sub"><a href="https://lawyer-landing-eta.vercel.app/" target="_blank">Landing Page - Advogado</a></p>
+              </div>
+              <div class="dashboard-thumb-icon" aria-hidden="true">⤢</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="dashboard-thumb" onclick="openLb(1)" id="thumb-0" role="button" aria-label="Abrir visualização: Dashboard de Execuções">
               <img src="assets/images/Dashboard.png" alt="Dashboard principal de execuções jurídicas" loading="lazy" />
               <div class="dashboard-thumb-overlay">
                 <p class="dashboard-thumb-label">Dashboard de Execuções</p>
@@ -855,8 +865,8 @@
               <div class="dashboard-thumb-icon" aria-hidden="true">⤢</div>
             </div>
 
-            <!-- Card 2 -->
-            <div class="dashboard-thumb" onclick="openLb(1)" id="thumb-1" role="button" aria-label="Abrir visualização: Monitoramento RabbitMQ">
+            <!-- Card 3 -->
+            <div class="dashboard-thumb" onclick="openLb(2)" id="thumb-1" role="button" aria-label="Abrir visualização: Monitoramento RabbitMQ">
               <img src="assets/images/RabbitMQ.png" alt="Painel de monitoramento RabbitMQ" loading="lazy" />
               <div class="dashboard-thumb-overlay">
                 <p class="dashboard-thumb-label">Monitoramento RabbitMQ</p>
@@ -865,8 +875,8 @@
               <div class="dashboard-thumb-icon" aria-hidden="true">⤢</div>
             </div>
 
-            <!-- Card 3 -->
-            <div class="dashboard-thumb" onclick="openLb(2)" id="thumb-2" role="button" aria-label="Abrir visualização: Gestão de Usuários">
+            <!-- Card 4 -->
+            <div class="dashboard-thumb" onclick="openLb(3)" id="thumb-2" role="button" aria-label="Abrir visualização: Gestão de Usuários">
               <img src="assets/images/usuarios.png" alt="Tela de gestão de usuários do sistema" loading="lazy" />
               <div class="dashboard-thumb-overlay">
                 <p class="dashboard-thumb-label">Gestão de Usuários</p>
@@ -875,8 +885,8 @@
               <div class="dashboard-thumb-icon" aria-hidden="true">⤢</div>
             </div>
 
-            <!-- Card 4 -->
-            <div class="dashboard-thumb" onclick="openLb(3)" id="thumb-3" role="button" aria-label="Abrir visualização: Timeline de Execuções">
+            <!-- Card 5 -->
+            <div class="dashboard-thumb" onclick="openLb(4)" id="thumb-3" role="button" aria-label="Abrir visualização: Timeline de Execuções">
               <img src="assets/images/inicial.png" alt="Timeline de execuções do sistema" loading="lazy" />
               <div class="dashboard-thumb-overlay">
                 <p class="dashboard-thumb-label">Timeline de Execuções</p>
@@ -1070,6 +1080,7 @@
 
       // ── Lightbox Logic ───────────────────────────────────────────────
       const lbImages = [
+        { src: "assets/images/advogado.png",  caption: "Landing Page para Advogado - Atuando internacionalmente" },
         { src: "assets/images/Dashboard.png",  caption: "Dashboard de Execuções — Orquestrador de Automações Jurídicas" },
         { src: "assets/images/RabbitMQ.png",   caption: "Monitoramento RabbitMQ — Filas e mensageria em tempo real" },
         { src: "assets/images/usuarios.png",   caption: "Gestão de Usuários — Controle de acesso e permissões" },
