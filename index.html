@@ -668,6 +668,19 @@
         .lb-prev { right: auto; left: 0; top: auto; bottom: -56px; transform: none; }
         .lb-next { left: auto; right: 0; top: auto; bottom: -56px; transform: none; }
       }
+      a {
+          color: white;                /* Define a cor padrão */
+          text-decoration: none;       /* Remove o sublinhado */
+      }
+
+      a:visited {
+          color: white;                /* Mantém a cor mesmo após visitado */
+      }
+
+      a:hover {
+          color: blue;                 /* Opcional: cor ao passar o mouse */
+          text-decoration: underline;  /* Opcional: sublinhar ao passar o mouse */
+      }
     </style>
   </head>
   <body>
@@ -836,7 +849,7 @@
       <section id="dashboard-preview">
         <h2 class="section-title">Dashboard em Ação</h2>
         <p>
-          Visão real das interfaces desenvolvidas: painéis que transformam dados operacionais complexos em informações acionáveis, com rastreabilidade total das execuções.
+          Visão real das interfaces desenvolvidas: landing pages, sistemas e painéis que transformam dados operacionais complexos em informações acionáveis, com rastreabilidade total das execuções.
         </p>
 
         <div class="dashboard-carousel-wrap">
@@ -849,7 +862,7 @@
             <div class="dashboard-thumb" onclick="openLb(0)" id="thumb-0" role="button" aria-label="Abrir visualização: Dashboard de Execuções">
               <img src="assets/images/advogado.png" alt="Landing Page - Advogado" loading="lazy" />
               <div class="dashboard-thumb-overlay">
-                <p class="dashboard-thumb-label"><a href="https://lawyer-landing-eta.vercel.app/" target="_blank">Click aqui para acessar!</a></p>
+                <p class="dashboard-thumb-label"><a href="https://lawyer-landing-eta.vercel.app/"  target="_blank">Click aqui para acessar!</a></p>
                 <p class="dashboard-thumb-sub"><a href="https://lawyer-landing-eta.vercel.app/" target="_blank">Landing Page - Advogado</a></p>
               </div>
               <div class="dashboard-thumb-icon" aria-hidden="true">⤢</div>
