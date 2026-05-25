@@ -1,0 +1,98 @@
+.lb-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 5, 15, 0.92);
+  backdrop-filter: blur(10px);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lb-backdrop.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lb-content {
+  position: relative;
+  max-width: 92vw;
+  max-height: 88vh;
+}
+
+.lb-content img {
+  display: block;
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 16px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(49, 255, 232, 0.15);
+  transform: scale(0.92);
+  transition: transform 0.35s cubic-bezier(.22, .68, 0, 1.2);
+}
+
+.lb-backdrop.active .lb-content img { transform: scale(1); }
+
+.lb-caption {
+  text-align: center;
+  margin-top: 14px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.lb-close {
+  position: absolute;
+  top: -35px;
+  right: -35px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s ease;
+  line-height: 1;
+}
+
+.lb-close:hover {
+  background: rgba(49, 255, 232, 0.18);
+  color: var(--accent);
+}
+
+.lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  transition: background 0.2s ease, color 0.2s ease;
+  z-index: 1;
+}
+
+.lb-nav:hover {
+  background: rgba(49, 255, 232, 0.18);
+  color: var(--accent);
+}
+
+.lb-prev { right: calc(100% + 14px); }
+.lb-next { left: calc(100% + 14px); }
+
+@media (max-width: 768px) {
+  .lb-prev { right: auto; left: 0; top: auto; bottom: -56px; transform: none; }
+  .lb-next { left: auto; right: 0; top: auto; bottom: -56px; transform: none; }
+}

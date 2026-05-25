@@ -1,0 +1,12 @@
+:root {
+  --bg: #050709;
+  --bg-alt: #0d1118;
+  --bg-card: #101722;
+  --bg-card-light: #141c29;
+  --accent: #31ffe8;
+  --accent-strong: #6b7bff;
+  --text: #eef5ff;
+  --text-muted: #b5c4da;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 25px 45px rgba(3, 5, 27, 0.45);
+}
