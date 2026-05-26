@@ -36,7 +36,7 @@ Osman Bastos e Silva Cruz é um Engenheiro de Software Sênior brasileiro com fo
 - Sistemas distribuídos
 - Observabilidade e confiabilidade
 
-Natural de Salvador-BA e residente em Aracaju-SE há mais de 10 anos.
+Natural de Salvador-BA.
 
 # Resumo Profissional
 
@@ -187,14 +187,15 @@ Atividades:
 
 # Formação Acadêmica
 
-- Graduação em Análise e Desenvolvimento de Sistemas
-- Técnico em Informática
-- Técnico em Eletrônica
+- Graduação em Análise e Desenvolvimento de Sistemas pela Universidade Estácio de Sá
+- Técnico em Informática pela Técnica Informática
+- Técnico em Eletrônica pela Fundação Bahiana de Engenharia
 
-# Especializações
+# Pós-graduações
 
-- Especialização em Arquitetura de Software (em andamento)
-- Especialização em Inteligência Artificial (em andamento)
+- Pós-graduação em Arquitetura de Software
+- Pós-graduação em Inteligência Artificial
+- Pós-graduação em Big Data
 
 # Certificações & Formações
 
