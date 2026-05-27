@@ -1,9 +1,5 @@
 const images = [
-  { src: new URL("../images/advogado.png", import.meta.url).href,  caption: "Landing Page para Advogado - Atuando internacionalmente" },
-  { src: new URL("../images/Dashboard.png", import.meta.url).href, caption: "Dashboard de Execuções — Orquestrador de Automações Jurídicas" },
-  { src: new URL("../images/RabbitMQ.png", import.meta.url).href,  caption: "Monitoramento RabbitMQ — Filas e mensageria em tempo real" },
-  { src: new URL("../images/usuarios.png", import.meta.url).href,  caption: "Gestão de Usuários — Controle de acesso e permissões" },
-  { src: new URL("../images/inicial.png", import.meta.url).href,   caption: "Interface Timeline do Sistema" },
+  { src: new URL("../images/advogado.png", import.meta.url).href,  caption: "Landing Page para Advogado - Atuando internacionalmente" }
 ];
 
 let currentIndex = 0;
